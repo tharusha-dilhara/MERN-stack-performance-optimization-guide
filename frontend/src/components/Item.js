@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
-const Item = ({ key, name, description, onUpdateDelete , iid }) => {
+const Item = React.memo(({ iid, name, description, onUpdateDelete }) => {
   const [editMode, setEditMode] = useState(false);
   const [editedName, setEditedName] = useState(name);
   const [editedDesc, setEditedDesc] = useState(description);
 
-  const handleUpdate = async () => {
-    console.log('Updating item:', iid);
+  const handleUpdate = useCallback(async () => {
     try {
       const response = await fetch(`/api/items/${iid}`, {
         method: 'PUT',
@@ -22,10 +21,9 @@ const Item = ({ key, name, description, onUpdateDelete , iid }) => {
     } catch (error) {
       console.error('Update error:', error);
     }
-  };
+  }, [iid, editedName, editedDesc, onUpdateDelete]);
 
-  const handleDelete = async () => {
-    console.log('Deleting item:', iid);
+  const handleDelete = useCallback(async () => {
     if (!window.confirm('Delete this item?')) return;
     try {
       const response = await fetch(`/api/items/${iid}`, {
@@ -36,9 +34,8 @@ const Item = ({ key, name, description, onUpdateDelete , iid }) => {
     } catch (error) {
       console.error('Delete error:', error);
     }
-  };
+  }, [iid, onUpdateDelete]);
 
-  console.log('Rendering Item component:');
   return (
     <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px' }}>
       {editMode ? (
@@ -65,6 +62,6 @@ const Item = ({ key, name, description, onUpdateDelete , iid }) => {
       )}
     </div>
   );
-};
+});
 
 export default Item;
