@@ -8,7 +8,7 @@ const Item = ({ key, name, description, onUpdateDelete , iid }) => {
   const handleUpdate = async () => {
     console.log('Updating item:', iid);
     try {
-      const response = await fetch(`http://localhost:5000/api/items/${iid}`, {
+      const response = await fetch(`/api/items/${iid}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -28,7 +28,7 @@ const Item = ({ key, name, description, onUpdateDelete , iid }) => {
     console.log('Deleting item:', iid);
     if (!window.confirm('Delete this item?')) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/items/${iid}`, {
+      const response = await fetch(`/api/items/${iid}`, {
         method: 'DELETE'
       });
       if (!response.ok) throw new Error('Delete failed');

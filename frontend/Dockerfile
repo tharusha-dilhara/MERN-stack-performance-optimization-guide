@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Use a lightweight web server to serve static files
+# Use Nginx to serve static files
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 

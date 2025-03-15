@@ -9,7 +9,7 @@ function App() {
   // Trigger search on every keystroke (non-optimized)
   const handleSearch = async (searchTerm) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/items/search?q=${searchTerm}`);
+      const response = await fetch(`/api/items/search?q=${searchTerm}`);
       const data = await response.json();
       setResults(data);
     } catch (error) {
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Search App (Non-Optimized Frontend)</h1>
+      <h1>Search App (Optimized Frontend)</h1>
       <input 
         type="text" 
         value={query} 
