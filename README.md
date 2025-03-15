@@ -1,4 +1,4 @@
-# Search Project (unoptimized)
+# Search Project (optimized)
 
 A full-stack search application built with **Node.js**, **Express**, **MongoDB**, and **React**. This project demonstrates basic search functionality using a non-optimized regex query, along with endpoints for editing and deleting items. The frontend provides an interface for real-time searching and displays results from the backend API.
 
